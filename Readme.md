@@ -1,8 +1,7 @@
 # Objective
-Mantain a simple mips pipeline processor written in different vhdl.
+Mantain a simple mips pipeline processor written in vhdl.
 ## Processor type
-This processor is made to simulate a pipelined mips processor 
-structures.
+This processor is made to simulate a simple pipelined mips processor 
 ## Software used
 Altera Quartus 13 sp 1 and model sim 13 sp 1.
 ## Observations
