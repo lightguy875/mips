@@ -1,0 +1,256 @@
+library ieee;
+use ieee.std_logic_1164.all;
+-- Coloquei alguma coisa pq se nao nao vai checar a sintaxe
+entity mips_pipeline is
+port(
+	clock : in std_logic
+);
+end mips_pipeline;
+
+architecture Behovioral of mips_pipeline is
+	-- Componentes
+	component mux is
+    Port (EN1, EN2 : in std_logic_vector(31 downto 0);
+          Selector      : in std_logic;
+          Output      : out std_logic_vector(31 downto 0));
+    End component;
+    component Contador_de_programa is
+    port (
+        clk: in std_logic;
+        input: in std_logic_vector(31 downto 0);
+        output: out std_logic_vector(31 downto 0)
+    );
+	end component;
+	component Universal_adder is
+    Port (A : in std_logic_vector(31 downto 0);
+			B : in std_logic_vector(31 downto 0);
+          Y    : out std_logic_vector(31 downto 0));
+    End component;
+    component instruction_mem is
+	port(
+	PC : in std_logic_vector(31 downto 0);
+	saida : out std_logic_vector(31 downto 0)
+	);
+	end component;
+	component fetch_reg is
+    port (
+        clk: in std_logic;
+        instruction_in: in std_logic_vector(31 downto 0);
+        pc_adder_in: in std_logic_vector(31 downto 0);
+        instruction_out: out std_logic_vector(31 downto 0);
+        pc_adder_out: out std_logic_vector(31 downto 0)
+    );
+	end component;
+	component Unidade_de_Controle is
+    Port (op : in std_logic_vector(5 downto 0);
+          RegDst  : out std_logic;
+          Branch  : out std_logic;
+          MemRead     : out std_logic;
+          MemtoReg    : out std_logic;
+          ALUop    : out std_logic_vector(1 downto 0);
+          MemWrite  : out std_logic;
+          ALUSrc      : out std_logic;
+          RegWrite: out std_logic);
+	end component;
+	component BREG is 
+	generic (WSIZE : natural := 32);
+	port (
+	clk, wren : in std_logic;
+	radd1, radd2, wadd : in std_logic_vector(4 downto 0);
+	wdata : in std_logic_vector(WSIZE-1 downto 0);
+	r1, r2 : out std_logic_vector(WSIZE-1 downto 0)
+	);
+	end component;
+	component Signed_extent is
+    Port (A : in std_logic_vector(15 downto 0);
+          Y : out std_logic_vector(31 downto 0));
+    End component;
+    component decode_exec_reg is
+    port (
+        clk: in std_logic;
+        pc_adder_in: in std_logic_vector(31 downto 0);
+        data1_in: in std_logic_vector(31 downto 0);
+        data2_in: in std_logic_vector(31 downto 0);
+        address32_in: in std_logic_vector(31 downto 0);
+        rs_in: in std_logic_vector(4 downto 0);
+        rt_in: in std_logic_vector(4 downto 0);
+        rd_in: in std_logic_vector(4 downto 0);
+        func_in: in std_logic_vector(5 downto 0);
+        RegDst_in: in std_logic;
+        ALUop_in: in std_logic_vector(1 downto 0);
+        ALUSrc_in: in std_logic;
+        Branch_in: in std_logic;
+        MemRead_in: in std_logic;
+        MemWrite_in: in std_logic;
+        RegWrite_in: in std_logic;
+        MemtoReg_in: in std_logic;
+        pc_adder_out: out std_logic_vector(31 downto 0);
+        data1_out: out std_logic_vector(31 downto 0);
+        data2_out: out std_logic_vector(31 downto 0);
+        address32_out: out std_logic_vector(31 downto 0);
+        rs_out: out std_logic_vector(4 downto 0);
+        rt_out: out std_logic_vector(4 downto 0);
+        rd_out: out std_logic_vector(4 downto 0);
+        func_out: out std_logic_vector(5 downto 0);
+        RegDst_out: out std_logic;
+        ALUop_out: out std_logic_vector(1 downto 0);
+        ALUSrc_out: out std_logic;
+        Branch_out: out std_logic;
+        MemRead_out: out std_logic;
+        MemWrite_out: out std_logic;
+        RegWrite_out: out std_logic;
+        MemtoReg_out: out std_logic
+    );
+	end component;
+	component shift_left_2 is
+		Port(
+			A: in std_logic_vector(31 downto 0);
+			B: out std_logic_vector(31 downto 0));
+	end component;
+	component Controle_ULA is
+    Port (funct      : in std_logic_vector(5 downto 0);
+          aluop      : in std_logic_vector(1 downto 0);
+          saidaop : out std_logic_vector(4 downto 0));
+    end component;
+    component ULA is
+	port 
+	(opcode : in std_logic_vector(4 downto 0);
+	a,b : in std_logic_vector(31 downto 0);
+	z: out std_logic_vector(31 downto 0);
+	zero,ovfl : out std_logic);
+	end component;
+	component exec_mem_reg is
+    port (
+        clk: in std_logic;
+        branch_adder_in: in std_logic_vector(31 downto 0);
+        alu_result_in: in std_logic_vector(31 downto 0);
+        zero_in: in std_logic;
+        data2_in: in std_logic_vector(31 downto 0);
+        wr_reg_in: in std_logic_vector(4 downto 0);
+        Branch_in: in std_logic;
+        MemRead_in: in std_logic;
+        MemWrite_in: in std_logic;
+        RegWrite_in: in std_logic;
+        MemtoReg_in: in std_logic;
+        branch_adder_out: out std_logic_vector(31 downto 0);
+        alu_result_out: out std_logic_vector(31 downto 0);
+        zero_out: out std_logic;
+        data2_out: out std_logic_vector(31 downto 0);
+        wr_reg_out: out std_logic_vector(4 downto 0);
+        Branch_out: out std_logic;
+        MemRead_out: out std_logic;
+        MemWrite_out: out std_logic;
+        RegWrite_out: out std_logic;
+        MemtoReg_out: out std_logic
+    );
+	end component;
+	component memMIPS IS
+	PORT
+	(
+		address	: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		clock		: IN STD_LOGIC  := '1';
+		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		wren		: IN STD_LOGIC ;
+		q			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
+	end component;
+	component mem_wb_reg is
+    port (
+        clk: in std_logic;
+        ram_in: in std_logic_vector(31 downto 0);
+        alu_result_in: in std_logic_vector(31 downto 0);
+        wr_reg_in: in std_logic_vector(4 downto 0);
+        RegWrite_in: in std_logic;
+        MemtoReg_in: in std_logic;
+        ram_out: out std_logic_vector(31 downto 0);
+        alu_result_out: out std_logic_vector(31 downto 0);
+        wr_reg_out: out std_logic_vector(4 downto 0);
+        RegWrite_out: out std_logic;
+        MemtoReg_out: out std_logic
+    );
+	end component;
+	component mux_5 is
+    Port (EN1, EN2 : in std_logic_vector(4 downto 0);
+          Selector      : in std_logic;
+          Output      : out std_logic_vector(4 downto 0));
+    End component;
+	-- IF
+	signal IFMux1, IFMux0, PC_IM, MuxPC, IM_IF : std_logic_vector(31 downto 0);
+	-- ID
+	signal ID_PCOUT, ID_INST, ID_RD1, ID_RD2, ID_SgnExt : std_logic_vector(31 downto 0);
+	signal	ID_Inst_15_00 : std_logic_vector(15 downto 0);
+	signal	ID_Inst_31_26,
+			ID_Inst_5_0	  : std_logic_vector(5 downto 0);
+	signal	ID_Inst_25_21,
+			ID_Inst_20_16, 
+			ID_Inst_15_11 : std_logic_vector(4 downto 0);
+	-- EX
+	signal EX_PCOUT, EX_INST, EX_RD1, EX_RD2, EX_SgnExt, EX_Shift2, EX_BrAddr, EX_muxALU,
+			EX_ALUR: std_logic_vector(31 downto 0);
+	signal EX_WR : std_logic_vector(4 downto 0);
+	signal	EX_Inst_5_0	  : std_logic_vector(5 downto 0);
+	signal	EX_Inst_25_21,
+			EX_Inst_20_16, 
+			EX_Inst_15_11,
+			MuxWR		  : std_logic_vector(4 downto 0);
+	signal EX_Zero, EX_OVFL : std_logic;
+	-- MEM
+	signal MEM_RD2, MEM_ALUR, MEM_DR : std_logic_vector(31 downto 0);
+	signal MEM_Zero : std_logic;
+	signal MEMWR : std_logic_vector(4 downto 0);
+	-- WB
+	signal WB_WD,WB_DR,WB_ADDR : std_logic_vector(31 downto 0);
+	-- Control
+	signal CTL1_ALUop, CTL2_ALUop : std_logic_vector(1 downto 0);
+	signal CTL1_RegDst, CTL1_Branch, CTL1_MemRead, CTL1_MemtoReg,
+			CTL1_MemWrite, CTL1_ALUSrc, CTL1_RegWrite: std_logic;	
+	signal CTL2_RegDst, CTL2_Branch, CTL2_MemRead, CTL2_MemtoReg,
+			CTL2_MemWrite, CTL2_ALUSrc, CTL2_RegWrite: std_logic;
+	signal CTL3_Branch, CTL3_MemRead, CTL3_MemtoReg, CTL3_MemWrite, CTL3_RegWrite: std_logic;
+	signal PCSrc, RegWrite,MemtoReg: std_logic;
+	signal clk : std_logic;
+	signal AluOp : std_logic_vector(4 downto 0);
+	signal CrappyFPGA : std_logic_vector(7 downto 0);
+begin
+	-- Esquematico de cima para baixo, da esquerda para a direita
+	clk <= clock;
+	PCSel: mux port map(IFMux0,IFMux1,PCSrc,MuxPC);
+	PCSet: Contador_de_programa port map(clk,MuxPC,PC_IM);
+	PCNext: Universal_adder port map(PC_IM,x"00000004",IFMux0);
+	Fetch: instruction_mem port map(PC_IM,IM_IF);
+	IF2ID: fetch_reg port map(clk,IM_IF,IFMux0,ID_INST,ID_PCOUT);
+	ID_Inst_31_26 <= ID_INST(31) & ID_INST(30) & ID_INST(29) & ID_INST(28) & ID_INST(27) & ID_INST(26);
+	ID_Inst_25_21 <= ID_INST(25) & ID_INST(24) & ID_INST(23) & ID_INST(22) & ID_INST(21);
+	ID_Inst_20_16 <= ID_INST(20) & ID_INST(19) & ID_INST(18) & ID_INST(17) & ID_INST(16);
+	ID_Inst_15_11 <= ID_INST(15) & ID_INST(14) & ID_INST(13) & ID_INST(12) & ID_INST(11);
+	ID_Inst_15_00 <= ID_INST(15) & ID_INST(14) & ID_INST(13) & ID_INST(12) & ID_INST(11) &
+					 ID_INST(10) & ID_INST(9) & ID_INST(8) & ID_INST(7) & ID_INST(6) &
+					 ID_INST(5) & ID_INST(4) & ID_INST(3) & ID_INST(2) & ID_INST(1) & ID_INST(0);
+	ID_Inst_5_0 <= ID_INST(5) & ID_INST(4) & ID_INST(3) & ID_INST(2) & ID_INST(1) & ID_INST(0);
+	CTL: Unidade_de_Controle port map(ID_Inst_31_26,CTL1_RegDst, CTL1_Branch, CTL1_MemRead, CTL1_MemtoReg,
+			CTL1_ALUop, CTL1_MemWrite, CTL1_ALUSrc, CTL1_RegWrite);
+	ToBREG: BREG port map(clk,RegWrite,ID_Inst_25_21,ID_Inst_20_16,EX_WR,WB_WD,ID_RD1,ID_RD2);
+	SgnExt: Signed_extent port map(ID_Inst_15_00,ID_SgnExt);
+	ID2EX: decode_exec_reg port map(clk,ID_PCOUT,ID_RD1,ID_RD2,ID_SgnExt,
+		ID_Inst_15_11,ID_Inst_20_16,ID_Inst_25_21,ID_Inst_5_0,--Verificar ordem correta
+		CTL1_RegDst,CTL1_ALUop,CTL1_ALusrc, CTL1_Branch, CTL1_MemRead,CTL1_MemWrite,CTL1_RegWrite,CTL1_MemtoReg,
+        EX_PCOUT,EX_RD1,EX_RD2,EX_SgnExt,
+        EX_Inst_15_11,EX_Inst_20_16,EX_Inst_25_21,EX_Inst_5_0, -- verificar ordem
+        CTL2_RegDst, CTL2_ALUop,CTL2_ALUSrc,CTL2_Branch, CTL2_MemRead,CTL2_MemWrite,CTL2_RegWrite,CTL2_MemtoReg);
+    SL2: shift_left_2 port map(EX_SgnExt,EX_Shift2);
+    BrAdd: Universal_adder port map(EX_PCOUT,EX_Shift2,EX_BrAddr);
+    ALUMux: mux port map(EX_RD2,EX_SgnExt,CTL2_ALUSrc,EX_muxALU);
+    ALUCTL: Controle_ULA port map (EX_Inst_5_0,CTL2_ALUop,AluOp);
+    WrReg: mux_5 port map(EX_Inst_15_11,EX_Inst_20_16,CTL2_RegDst,MuxWR);
+    ALU: ULA port map(AluOp,EX_RD1,EX_muxALU,EX_ALUR,EX_Zero,EX_OVFL);
+    EX2MEM: exec_mem_reg port map(clk, EX_BrAddr, EX_ALUR, EX_Zero, EX_RD2, MuxWR,
+		CTL2_Branch, CTL2_MemRead, CTL2_MemWrite, CTL2_RegWrite,CTL2_MemtoReg,
+        IFMux1, MEM_ALUR, MEM_Zero, MEM_RD2, MEMWR,
+        CTL3_Branch, CTL3_MemRead, CTL3_MemWrite, CTL3_RegWrite,CTL3_MemtoReg);
+    PCSrc <= MEM_Zero AND CTL3_Branch;
+    CrappyFPGA <= MEM_ALUR(7) & MEM_ALUR(6) & MEM_ALUR(5) & MEM_ALUR(4) & MEM_ALUR(3) & MEM_ALUR(2) & MEM_ALUR(1) & MEM_ALUR(0);
+    DTMEM: memMIPS port map (CrappyFPGA, clk, MEM_RD2, CTL3_MemWrite, MEM_DR ); -- faltando MemRead
+    MEM2WB: mem_wb_reg port map(clk, MEM_DR, MEM_ALUR, MEMWR, CTL3_RegWrite,CTL3_MemtoReg,
+        WB_DR, WB_ADDR, EX_WR, RegWrite, MemtoReg);
+    WBMUX: mux port map(WB_DR,WB_ADDR,MemtoReg,WB_WD);
+end behovioral;

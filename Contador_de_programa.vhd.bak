@@ -1,0 +1,37 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+use std.textio.all;
+
+use work.pck_myhdl_06.all;
+
+entity Contador_de_programa is
+    port (
+        clk: in unsigned(0 downto 0);
+        input: in unsigned(4 downto 0);
+        output: out unsigned(4 downto 0)
+    );
+end entity program_counter;
+
+architecture MyHDL of program_counter is
+
+signal state: unsigned(31 downto 0);
+
+begin
+
+
+PROGRAM_COUNTER_UP_OUT: process (clk) is
+begin
+    if rising_edge(clk) then
+        output <= resize(state, 5);
+    end if;
+end process PROGRAM_COUNTER_UP_OUT;
+
+PROGRAM_COUNTER_UP_STATE: process (clk) is
+begin
+    if falling_edge(clk) then
+        state <= resize(input, 32);
+    end if;
+end process PROGRAM_COUNTER_UP_STATE;
+
+end architecture MyHDL;

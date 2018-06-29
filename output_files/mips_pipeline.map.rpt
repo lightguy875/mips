@@ -1,0 +1,1124 @@
+Analysis & Synthesis report for mips_pipeline
+Mon Dec 11 17:18:47 2017
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis IP Cores Summary
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Source assignments for memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated
+ 13. Parameter Settings for User Entity Instance: BREG:ToBREG
+ 14. Parameter Settings for User Entity Instance: memMIPS:DTMEM|altsyncram:altsyncram_component
+ 15. altsyncram Parameter Settings by Entity Instance
+ 16. Port Connectivity Checks: "mem_wb_reg:MEM2WB"
+ 17. Port Connectivity Checks: "exec_mem_reg:EX2MEM"
+ 18. Port Connectivity Checks: "ULA:ALU"
+ 19. Port Connectivity Checks: "decode_exec_reg:ID2EX"
+ 20. Port Connectivity Checks: "Universal_adder:PCNext"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Dec 11 17:18:47 2017           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; mips_pipeline                                   ;
+; Top-level Entity Name              ; mips_pipeline                                   ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 0                                               ;
+;     Total combinational functions  ; 0                                               ;
+;     Dedicated logic registers      ; 0                                               ;
+; Total registers                    ; 0                                               ;
+; Total pins                         ; 1                                               ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                                      ; mips_pipeline      ; mips_pipeline      ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; Off                ; Off                ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; mux_5.vhd                        ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/mux_5.vhd                              ;         ;
+; Universal_adder.vhd              ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/Universal_adder.vhd                    ;         ;
+; mips_pipeline.vhd                ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/mips_pipeline.vhd                      ;         ;
+; Signed_extent.vhd                ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/Signed_extent.vhd                      ;         ;
+; mux.vhd                          ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/mux.vhd                                ;         ;
+; ULA.vhd                          ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/ULA.vhd                                ;         ;
+; BREG.vhd                         ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/BREG.vhd                               ;         ;
+; Controle_ULA.vhd                 ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/Controle_ULA.vhd                       ;         ;
+; Unidade_de_Controle.vhd          ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/Unidade_de_Controle.vhd                ;         ;
+; memMIPS.vhd                      ; yes             ; User Wizard-Generated File   ; C:/Altera_Projects/projeto final/memMIPS.vhd                            ;         ;
+; instruction_mem.vhd              ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/instruction_mem.vhd                    ;         ;
+; Contador_de_programa.vhd         ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/Contador_de_programa.vhd               ;         ;
+; fetch_reg.vhd                    ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/fetch_reg.vhd                          ;         ;
+; decode_exec_reg.vhd              ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/decode_exec_reg.vhd                    ;         ;
+; exec_mem_reg.vhd                 ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/exec_mem_reg.vhd                       ;         ;
+; mem_wb_reg.vhd                   ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/mem_wb_reg.vhd                         ;         ;
+; shift_left_2.vhd                 ; yes             ; User VHDL File               ; C:/Altera_Projects/projeto final/shift_left_2.vhd                       ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_u3c1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Altera_Projects/projeto final/db/altsyncram_u3c1.tdf                 ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 1     ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
++---------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+; |mips_pipeline             ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 1    ; 0            ; |mips_pipeline      ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                       ;
++--------+--------------+---------+--------------+--------------+------------------------------+----------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance              ; IP Include File                              ;
++--------+--------------+---------+--------------+--------------+------------------------------+----------------------------------------------+
+; Altera ; RAM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |mips_pipeline|memMIPS:DTMEM ; C:/Altera_Projects/projeto final/memMIPS.vhd ;
++--------+--------------+---------+--------------+--------------+------------------------------+----------------------------------------------+
+
+
++-------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                  ;
++--------------------------------------------+----------------------------------------+
+; Register name                              ; Reason for Removal                     ;
++--------------------------------------------+----------------------------------------+
+; exec_mem_reg:EX2MEM|data2_out[0..30]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|MemWrite_out           ; Lost fanout                            ;
+; decode_exec_reg:ID2EX|MemWrite_out         ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|data2_out[31]          ; Lost fanout                            ;
+; fetch_reg:IF2ID|instruction_out[0..31]     ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|func_out[0..5]       ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|rt_out[0..4]         ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|rs_out[0..4]         ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|address32_out[0..31] ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|MemtoReg_out         ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|RegWrite_out         ; Stuck at VCC due to stuck port data_in ;
+; decode_exec_reg:ID2EX|ALUop_out[1]         ; Stuck at VCC due to stuck port data_in ;
+; exec_mem_reg:EX2MEM|MemtoReg_out           ; Stuck at GND due to stuck port data_in ;
+; exec_mem_reg:EX2MEM|RegWrite_out           ; Stuck at VCC due to stuck port data_in ;
+; exec_mem_reg:EX2MEM|wr_reg_out[0..4]       ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|ALUSrc_out           ; Stuck at GND due to stuck port data_in ;
+; decode_exec_reg:ID2EX|ALUop_out[0]         ; Stuck at GND due to stuck port data_in ;
+; mem_wb_reg:MEM2WB|MemtoReg_out             ; Stuck at GND due to stuck port data_in ;
+; mem_wb_reg:MEM2WB|RegWrite_out             ; Stuck at VCC due to stuck port data_in ;
+; mem_wb_reg:MEM2WB|wr_reg_out[0..4]         ; Stuck at GND due to stuck port data_in ;
+; mem_wb_reg:MEM2WB|alu_result_out[31]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[31]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[30]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[30]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[29]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[29]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[28]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[28]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[27]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[27]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[26]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[26]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[25]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[25]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[24]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[24]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[23]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[23]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[22]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[22]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[21]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[21]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[20]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[20]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[19]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[19]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[18]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[18]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[17]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[17]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[16]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[16]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[15]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[15]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[14]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[14]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[13]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[13]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[12]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[12]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[11]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[11]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[10]       ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[10]     ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[9]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[9]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[8]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[8]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[7]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[7]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[6]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[6]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[5]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[5]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[4]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[4]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[3]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[3]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[2]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[2]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[1]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[1]      ; Lost fanout                            ;
+; mem_wb_reg:MEM2WB|alu_result_out[0]        ; Lost fanout                            ;
+; exec_mem_reg:EX2MEM|alu_result_out[0]      ; Lost fanout                            ;
+; decode_exec_reg:ID2EX|RegDst_out           ; Lost fanout                            ;
+; decode_exec_reg:ID2EX|data2_out[0..31]     ; Lost fanout                            ;
+; decode_exec_reg:ID2EX|data1_out[0..31]     ; Lost fanout                            ;
+; BREG:ToBREG|Re31[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re30[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re29[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re28[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re27[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re26[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re25[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re24[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re23[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re22[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re21[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re20[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re19[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re18[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re17[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re16[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re15[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re14[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re13[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re12[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re11[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re10[0..31]                    ; Lost fanout                            ;
+; BREG:ToBREG|Re9[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re8[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re7[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re6[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re5[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re4[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re3[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re2[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|Re1[0..31]                     ; Lost fanout                            ;
+; BREG:ToBREG|r2[0..31]                      ; Lost fanout                            ;
+; BREG:ToBREG|r1[0..31]                      ; Lost fanout                            ;
+; Total Number of Removed Registers = 1318   ;                                        ;
++--------------------------------------------+----------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                               ;
++-------------------------------------+---------------------------+-----------------------------------------------------------------------------------------+
+; Register name                       ; Reason for Removal        ; Registers Removed due to This Register                                                  ;
++-------------------------------------+---------------------------+-----------------------------------------------------------------------------------------+
+; fetch_reg:IF2ID|instruction_out[16] ; Stuck at GND              ; decode_exec_reg:ID2EX|rt_out[0], exec_mem_reg:EX2MEM|wr_reg_out[0],                     ;
+;                                     ; due to stuck port data_in ; mem_wb_reg:MEM2WB|wr_reg_out[0], decode_exec_reg:ID2EX|RegDst_out,                      ;
+;                                     ;                           ; BREG:ToBREG|Re31[3], BREG:ToBREG|Re31[2], BREG:ToBREG|Re31[1], BREG:ToBREG|Re31[0],     ;
+;                                     ;                           ; BREG:ToBREG|Re31[4], BREG:ToBREG|Re31[5], BREG:ToBREG|Re31[6], BREG:ToBREG|Re31[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re31[8], BREG:ToBREG|Re31[9], BREG:ToBREG|Re31[10], BREG:ToBREG|Re31[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re31[12], BREG:ToBREG|Re31[13], BREG:ToBREG|Re31[14], BREG:ToBREG|Re31[15], ;
+;                                     ;                           ; BREG:ToBREG|Re31[16], BREG:ToBREG|Re31[17], BREG:ToBREG|Re31[18], BREG:ToBREG|Re31[19], ;
+;                                     ;                           ; BREG:ToBREG|Re31[20], BREG:ToBREG|Re31[21], BREG:ToBREG|Re31[22], BREG:ToBREG|Re31[23], ;
+;                                     ;                           ; BREG:ToBREG|Re31[24], BREG:ToBREG|Re31[25], BREG:ToBREG|Re31[26], BREG:ToBREG|Re31[27], ;
+;                                     ;                           ; BREG:ToBREG|Re31[28], BREG:ToBREG|Re31[29], BREG:ToBREG|Re31[30], BREG:ToBREG|Re31[31], ;
+;                                     ;                           ; BREG:ToBREG|Re30[0], BREG:ToBREG|Re30[1], BREG:ToBREG|Re30[2], BREG:ToBREG|Re30[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re30[4], BREG:ToBREG|Re30[5], BREG:ToBREG|Re30[6], BREG:ToBREG|Re30[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re30[8], BREG:ToBREG|Re30[9], BREG:ToBREG|Re30[10], BREG:ToBREG|Re30[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re30[12], BREG:ToBREG|Re30[13], BREG:ToBREG|Re30[14], BREG:ToBREG|Re30[15], ;
+;                                     ;                           ; BREG:ToBREG|Re30[16], BREG:ToBREG|Re30[17], BREG:ToBREG|Re30[18], BREG:ToBREG|Re30[19], ;
+;                                     ;                           ; BREG:ToBREG|Re30[20], BREG:ToBREG|Re30[21], BREG:ToBREG|Re30[22], BREG:ToBREG|Re30[23], ;
+;                                     ;                           ; BREG:ToBREG|Re30[24], BREG:ToBREG|Re30[25], BREG:ToBREG|Re30[26], BREG:ToBREG|Re30[27], ;
+;                                     ;                           ; BREG:ToBREG|Re30[28], BREG:ToBREG|Re30[29], BREG:ToBREG|Re30[30], BREG:ToBREG|Re30[31], ;
+;                                     ;                           ; BREG:ToBREG|Re29[0], BREG:ToBREG|Re29[1], BREG:ToBREG|Re29[2], BREG:ToBREG|Re29[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re29[4], BREG:ToBREG|Re29[5], BREG:ToBREG|Re29[6], BREG:ToBREG|Re29[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re29[8], BREG:ToBREG|Re29[9], BREG:ToBREG|Re29[10], BREG:ToBREG|Re29[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re29[12], BREG:ToBREG|Re29[13], BREG:ToBREG|Re29[14], BREG:ToBREG|Re29[15], ;
+;                                     ;                           ; BREG:ToBREG|Re29[16], BREG:ToBREG|Re29[17], BREG:ToBREG|Re29[18], BREG:ToBREG|Re29[19], ;
+;                                     ;                           ; BREG:ToBREG|Re29[20], BREG:ToBREG|Re29[21], BREG:ToBREG|Re29[22], BREG:ToBREG|Re29[23], ;
+;                                     ;                           ; BREG:ToBREG|Re29[24], BREG:ToBREG|Re29[25], BREG:ToBREG|Re29[26], BREG:ToBREG|Re29[27], ;
+;                                     ;                           ; BREG:ToBREG|Re29[28], BREG:ToBREG|Re29[29], BREG:ToBREG|Re29[30], BREG:ToBREG|Re29[31], ;
+;                                     ;                           ; BREG:ToBREG|Re28[0], BREG:ToBREG|Re28[1], BREG:ToBREG|Re28[2], BREG:ToBREG|Re28[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re28[4], BREG:ToBREG|Re28[5], BREG:ToBREG|Re28[6], BREG:ToBREG|Re28[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re28[8], BREG:ToBREG|Re28[9], BREG:ToBREG|Re28[10], BREG:ToBREG|Re28[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re28[12], BREG:ToBREG|Re28[13], BREG:ToBREG|Re28[14], BREG:ToBREG|Re28[15], ;
+;                                     ;                           ; BREG:ToBREG|Re28[16], BREG:ToBREG|Re28[17], BREG:ToBREG|Re28[18], BREG:ToBREG|Re28[19], ;
+;                                     ;                           ; BREG:ToBREG|Re28[20], BREG:ToBREG|Re28[21], BREG:ToBREG|Re28[22], BREG:ToBREG|Re28[23], ;
+;                                     ;                           ; BREG:ToBREG|Re28[24], BREG:ToBREG|Re28[25], BREG:ToBREG|Re28[26], BREG:ToBREG|Re28[27], ;
+;                                     ;                           ; BREG:ToBREG|Re28[28], BREG:ToBREG|Re28[29], BREG:ToBREG|Re28[30], BREG:ToBREG|Re28[31], ;
+;                                     ;                           ; BREG:ToBREG|Re27[0], BREG:ToBREG|Re27[1], BREG:ToBREG|Re27[2], BREG:ToBREG|Re27[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re27[4], BREG:ToBREG|Re27[5], BREG:ToBREG|Re27[6], BREG:ToBREG|Re27[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re27[8], BREG:ToBREG|Re27[9], BREG:ToBREG|Re27[10], BREG:ToBREG|Re27[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re27[12], BREG:ToBREG|Re27[13], BREG:ToBREG|Re27[14], BREG:ToBREG|Re27[15], ;
+;                                     ;                           ; BREG:ToBREG|Re27[16], BREG:ToBREG|Re27[17], BREG:ToBREG|Re27[18], BREG:ToBREG|Re27[19], ;
+;                                     ;                           ; BREG:ToBREG|Re27[20], BREG:ToBREG|Re27[21], BREG:ToBREG|Re27[22], BREG:ToBREG|Re27[23], ;
+;                                     ;                           ; BREG:ToBREG|Re27[24], BREG:ToBREG|Re27[25], BREG:ToBREG|Re27[26], BREG:ToBREG|Re27[27], ;
+;                                     ;                           ; BREG:ToBREG|Re27[28], BREG:ToBREG|Re27[29], BREG:ToBREG|Re27[30], BREG:ToBREG|Re27[31], ;
+;                                     ;                           ; BREG:ToBREG|Re24[0], BREG:ToBREG|Re24[1], BREG:ToBREG|Re24[2], BREG:ToBREG|Re24[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re24[4], BREG:ToBREG|Re24[5], BREG:ToBREG|Re24[6], BREG:ToBREG|Re24[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re24[8], BREG:ToBREG|Re24[9], BREG:ToBREG|Re24[10], BREG:ToBREG|Re24[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re24[12], BREG:ToBREG|Re24[13], BREG:ToBREG|Re24[14], BREG:ToBREG|Re24[15], ;
+;                                     ;                           ; BREG:ToBREG|Re24[16], BREG:ToBREG|Re24[17], BREG:ToBREG|Re24[18], BREG:ToBREG|Re24[19], ;
+;                                     ;                           ; BREG:ToBREG|Re24[20], BREG:ToBREG|Re24[21], BREG:ToBREG|Re24[22], BREG:ToBREG|Re24[23], ;
+;                                     ;                           ; BREG:ToBREG|Re24[24], BREG:ToBREG|Re24[25], BREG:ToBREG|Re24[26], BREG:ToBREG|Re24[27], ;
+;                                     ;                           ; BREG:ToBREG|Re24[28], BREG:ToBREG|Re24[29], BREG:ToBREG|Re24[30], BREG:ToBREG|Re24[31], ;
+;                                     ;                           ; BREG:ToBREG|Re23[0], BREG:ToBREG|Re23[1], BREG:ToBREG|Re23[2], BREG:ToBREG|Re23[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re23[4], BREG:ToBREG|Re23[5], BREG:ToBREG|Re23[6], BREG:ToBREG|Re23[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re23[8], BREG:ToBREG|Re23[9], BREG:ToBREG|Re23[10], BREG:ToBREG|Re23[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re23[12], BREG:ToBREG|Re23[13], BREG:ToBREG|Re23[14], BREG:ToBREG|Re23[15], ;
+;                                     ;                           ; BREG:ToBREG|Re23[16], BREG:ToBREG|Re23[17], BREG:ToBREG|Re23[18], BREG:ToBREG|Re23[19], ;
+;                                     ;                           ; BREG:ToBREG|Re23[20], BREG:ToBREG|Re23[21], BREG:ToBREG|Re23[22], BREG:ToBREG|Re23[23], ;
+;                                     ;                           ; BREG:ToBREG|Re23[24], BREG:ToBREG|Re23[25], BREG:ToBREG|Re23[26], BREG:ToBREG|Re23[27], ;
+;                                     ;                           ; BREG:ToBREG|Re23[28], BREG:ToBREG|Re23[29], BREG:ToBREG|Re23[30], BREG:ToBREG|Re23[31], ;
+;                                     ;                           ; BREG:ToBREG|Re22[0], BREG:ToBREG|Re22[1], BREG:ToBREG|Re22[2], BREG:ToBREG|Re22[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re22[4], BREG:ToBREG|Re22[5], BREG:ToBREG|Re22[6], BREG:ToBREG|Re22[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re22[8], BREG:ToBREG|Re22[9], BREG:ToBREG|Re22[10], BREG:ToBREG|Re22[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re22[12], BREG:ToBREG|Re22[13], BREG:ToBREG|Re22[14], BREG:ToBREG|Re22[15], ;
+;                                     ;                           ; BREG:ToBREG|Re22[16], BREG:ToBREG|Re22[17], BREG:ToBREG|Re22[18], BREG:ToBREG|Re22[19], ;
+;                                     ;                           ; BREG:ToBREG|Re22[20], BREG:ToBREG|Re22[21], BREG:ToBREG|Re22[22], BREG:ToBREG|Re22[23], ;
+;                                     ;                           ; BREG:ToBREG|Re22[24], BREG:ToBREG|Re22[25], BREG:ToBREG|Re22[26], BREG:ToBREG|Re22[27], ;
+;                                     ;                           ; BREG:ToBREG|Re22[28], BREG:ToBREG|Re22[29], BREG:ToBREG|Re22[30], BREG:ToBREG|Re22[31], ;
+;                                     ;                           ; BREG:ToBREG|Re21[0], BREG:ToBREG|Re21[1], BREG:ToBREG|Re21[2], BREG:ToBREG|Re21[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re21[4], BREG:ToBREG|Re21[5], BREG:ToBREG|Re21[6], BREG:ToBREG|Re21[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re21[8], BREG:ToBREG|Re21[9], BREG:ToBREG|Re21[10], BREG:ToBREG|Re21[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re21[12], BREG:ToBREG|Re21[13], BREG:ToBREG|Re21[14], BREG:ToBREG|Re21[15], ;
+;                                     ;                           ; BREG:ToBREG|Re21[16], BREG:ToBREG|Re21[17], BREG:ToBREG|Re21[18], BREG:ToBREG|Re21[19], ;
+;                                     ;                           ; BREG:ToBREG|Re21[20], BREG:ToBREG|Re21[21], BREG:ToBREG|Re21[22], BREG:ToBREG|Re21[23], ;
+;                                     ;                           ; BREG:ToBREG|Re21[24], BREG:ToBREG|Re21[25], BREG:ToBREG|Re21[26], BREG:ToBREG|Re21[27], ;
+;                                     ;                           ; BREG:ToBREG|Re21[28], BREG:ToBREG|Re21[29], BREG:ToBREG|Re21[30], BREG:ToBREG|Re21[31], ;
+;                                     ;                           ; BREG:ToBREG|Re20[0], BREG:ToBREG|Re20[1], BREG:ToBREG|Re20[2], BREG:ToBREG|Re20[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re20[4], BREG:ToBREG|Re20[5], BREG:ToBREG|Re20[6], BREG:ToBREG|Re20[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re20[8], BREG:ToBREG|Re20[9], BREG:ToBREG|Re20[10], BREG:ToBREG|Re20[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re20[12], BREG:ToBREG|Re20[13], BREG:ToBREG|Re20[14], BREG:ToBREG|Re20[15], ;
+;                                     ;                           ; BREG:ToBREG|Re20[16], BREG:ToBREG|Re20[17], BREG:ToBREG|Re20[18], BREG:ToBREG|Re20[19], ;
+;                                     ;                           ; BREG:ToBREG|Re20[20], BREG:ToBREG|Re20[21], BREG:ToBREG|Re20[22], BREG:ToBREG|Re20[23], ;
+;                                     ;                           ; BREG:ToBREG|Re20[24], BREG:ToBREG|Re20[25], BREG:ToBREG|Re20[26], BREG:ToBREG|Re20[27], ;
+;                                     ;                           ; BREG:ToBREG|Re20[28], BREG:ToBREG|Re20[29], BREG:ToBREG|Re20[30], BREG:ToBREG|Re20[31], ;
+;                                     ;                           ; BREG:ToBREG|Re19[0], BREG:ToBREG|Re19[1], BREG:ToBREG|Re19[2], BREG:ToBREG|Re19[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re19[4], BREG:ToBREG|Re19[5], BREG:ToBREG|Re19[6], BREG:ToBREG|Re19[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re19[8], BREG:ToBREG|Re19[9], BREG:ToBREG|Re19[10], BREG:ToBREG|Re19[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re19[12], BREG:ToBREG|Re19[13], BREG:ToBREG|Re19[14], BREG:ToBREG|Re19[15], ;
+;                                     ;                           ; BREG:ToBREG|Re19[16], BREG:ToBREG|Re19[17], BREG:ToBREG|Re19[18], BREG:ToBREG|Re19[19], ;
+;                                     ;                           ; BREG:ToBREG|Re19[20], BREG:ToBREG|Re19[21], BREG:ToBREG|Re19[22], BREG:ToBREG|Re19[23], ;
+;                                     ;                           ; BREG:ToBREG|Re19[24], BREG:ToBREG|Re19[25], BREG:ToBREG|Re19[26], BREG:ToBREG|Re19[27], ;
+;                                     ;                           ; BREG:ToBREG|Re19[28], BREG:ToBREG|Re19[29], BREG:ToBREG|Re19[30], BREG:ToBREG|Re19[31], ;
+;                                     ;                           ; BREG:ToBREG|Re18[0], BREG:ToBREG|Re18[1], BREG:ToBREG|Re18[2], BREG:ToBREG|Re18[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re18[4], BREG:ToBREG|Re18[5], BREG:ToBREG|Re18[6], BREG:ToBREG|Re18[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re18[8], BREG:ToBREG|Re18[9], BREG:ToBREG|Re18[10], BREG:ToBREG|Re18[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re18[12], BREG:ToBREG|Re18[13], BREG:ToBREG|Re18[14], BREG:ToBREG|Re18[15], ;
+;                                     ;                           ; BREG:ToBREG|Re18[16], BREG:ToBREG|Re18[17], BREG:ToBREG|Re18[18], BREG:ToBREG|Re18[19], ;
+;                                     ;                           ; BREG:ToBREG|Re18[20], BREG:ToBREG|Re18[21], BREG:ToBREG|Re18[22], BREG:ToBREG|Re18[23], ;
+;                                     ;                           ; BREG:ToBREG|Re18[24], BREG:ToBREG|Re18[25], BREG:ToBREG|Re18[26], BREG:ToBREG|Re18[27], ;
+;                                     ;                           ; BREG:ToBREG|Re18[28], BREG:ToBREG|Re18[29], BREG:ToBREG|Re18[30], BREG:ToBREG|Re18[31], ;
+;                                     ;                           ; BREG:ToBREG|Re15[0], BREG:ToBREG|Re15[1], BREG:ToBREG|Re15[2], BREG:ToBREG|Re15[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re15[4], BREG:ToBREG|Re15[5], BREG:ToBREG|Re15[6], BREG:ToBREG|Re15[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re15[8], BREG:ToBREG|Re15[9], BREG:ToBREG|Re15[10], BREG:ToBREG|Re15[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re15[12], BREG:ToBREG|Re15[13], BREG:ToBREG|Re15[14], BREG:ToBREG|Re15[15], ;
+;                                     ;                           ; BREG:ToBREG|Re15[16], BREG:ToBREG|Re15[17], BREG:ToBREG|Re15[18], BREG:ToBREG|Re15[19], ;
+;                                     ;                           ; BREG:ToBREG|Re15[20], BREG:ToBREG|Re15[21], BREG:ToBREG|Re15[22], BREG:ToBREG|Re15[23], ;
+;                                     ;                           ; BREG:ToBREG|Re15[24], BREG:ToBREG|Re15[25], BREG:ToBREG|Re15[26], BREG:ToBREG|Re15[27], ;
+;                                     ;                           ; BREG:ToBREG|Re15[28], BREG:ToBREG|Re15[29], BREG:ToBREG|Re15[30], BREG:ToBREG|Re15[31], ;
+;                                     ;                           ; BREG:ToBREG|Re14[0], BREG:ToBREG|Re14[1], BREG:ToBREG|Re14[2], BREG:ToBREG|Re14[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re14[4], BREG:ToBREG|Re14[5], BREG:ToBREG|Re14[6], BREG:ToBREG|Re14[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re14[8], BREG:ToBREG|Re14[9], BREG:ToBREG|Re14[10], BREG:ToBREG|Re14[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re14[12], BREG:ToBREG|Re14[13], BREG:ToBREG|Re14[14], BREG:ToBREG|Re14[15], ;
+;                                     ;                           ; BREG:ToBREG|Re14[16], BREG:ToBREG|Re14[17], BREG:ToBREG|Re14[18], BREG:ToBREG|Re14[19], ;
+;                                     ;                           ; BREG:ToBREG|Re14[20], BREG:ToBREG|Re14[21], BREG:ToBREG|Re14[22], BREG:ToBREG|Re14[23], ;
+;                                     ;                           ; BREG:ToBREG|Re14[24], BREG:ToBREG|Re14[25], BREG:ToBREG|Re14[26], BREG:ToBREG|Re14[27], ;
+;                                     ;                           ; BREG:ToBREG|Re14[28], BREG:ToBREG|Re14[29], BREG:ToBREG|Re14[30], BREG:ToBREG|Re14[31], ;
+;                                     ;                           ; BREG:ToBREG|Re13[0], BREG:ToBREG|Re13[1], BREG:ToBREG|Re13[2], BREG:ToBREG|Re13[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re13[4], BREG:ToBREG|Re13[5], BREG:ToBREG|Re13[6], BREG:ToBREG|Re13[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re13[8], BREG:ToBREG|Re13[9], BREG:ToBREG|Re13[10], BREG:ToBREG|Re13[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re13[12], BREG:ToBREG|Re13[13], BREG:ToBREG|Re13[14], BREG:ToBREG|Re13[15], ;
+;                                     ;                           ; BREG:ToBREG|Re13[16], BREG:ToBREG|Re13[17], BREG:ToBREG|Re13[18], BREG:ToBREG|Re13[19], ;
+;                                     ;                           ; BREG:ToBREG|Re13[20], BREG:ToBREG|Re13[21], BREG:ToBREG|Re13[22], BREG:ToBREG|Re13[23], ;
+;                                     ;                           ; BREG:ToBREG|Re13[24], BREG:ToBREG|Re13[25], BREG:ToBREG|Re13[26], BREG:ToBREG|Re13[27], ;
+;                                     ;                           ; BREG:ToBREG|Re13[28], BREG:ToBREG|Re13[29], BREG:ToBREG|Re13[30], BREG:ToBREG|Re13[31], ;
+;                                     ;                           ; BREG:ToBREG|Re12[0], BREG:ToBREG|Re12[1], BREG:ToBREG|Re12[2], BREG:ToBREG|Re12[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re12[4], BREG:ToBREG|Re12[5], BREG:ToBREG|Re12[6], BREG:ToBREG|Re12[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re12[8], BREG:ToBREG|Re12[9], BREG:ToBREG|Re12[10], BREG:ToBREG|Re12[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re12[12], BREG:ToBREG|Re12[13], BREG:ToBREG|Re12[14], BREG:ToBREG|Re12[15], ;
+;                                     ;                           ; BREG:ToBREG|Re12[16], BREG:ToBREG|Re12[17], BREG:ToBREG|Re12[18], BREG:ToBREG|Re12[19], ;
+;                                     ;                           ; BREG:ToBREG|Re12[20], BREG:ToBREG|Re12[21], BREG:ToBREG|Re12[22], BREG:ToBREG|Re12[23], ;
+;                                     ;                           ; BREG:ToBREG|Re12[24], BREG:ToBREG|Re12[25], BREG:ToBREG|Re12[26], BREG:ToBREG|Re12[27], ;
+;                                     ;                           ; BREG:ToBREG|Re12[28], BREG:ToBREG|Re12[29], BREG:ToBREG|Re12[30], BREG:ToBREG|Re12[31], ;
+;                                     ;                           ; BREG:ToBREG|Re11[0], BREG:ToBREG|Re11[1], BREG:ToBREG|Re11[2], BREG:ToBREG|Re11[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re11[4], BREG:ToBREG|Re11[5], BREG:ToBREG|Re11[6], BREG:ToBREG|Re11[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re11[8], BREG:ToBREG|Re11[9], BREG:ToBREG|Re11[10], BREG:ToBREG|Re11[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re11[12], BREG:ToBREG|Re11[13], BREG:ToBREG|Re11[14], BREG:ToBREG|Re11[15], ;
+;                                     ;                           ; BREG:ToBREG|Re11[16], BREG:ToBREG|Re11[17], BREG:ToBREG|Re11[18], BREG:ToBREG|Re11[19], ;
+;                                     ;                           ; BREG:ToBREG|Re11[20], BREG:ToBREG|Re11[21], BREG:ToBREG|Re11[22], BREG:ToBREG|Re11[23], ;
+;                                     ;                           ; BREG:ToBREG|Re11[24], BREG:ToBREG|Re11[25], BREG:ToBREG|Re11[26], BREG:ToBREG|Re11[27], ;
+;                                     ;                           ; BREG:ToBREG|Re11[28], BREG:ToBREG|Re11[29], BREG:ToBREG|Re11[30], BREG:ToBREG|Re11[31], ;
+;                                     ;                           ; BREG:ToBREG|Re10[0], BREG:ToBREG|Re10[1], BREG:ToBREG|Re10[2], BREG:ToBREG|Re10[3],     ;
+;                                     ;                           ; BREG:ToBREG|Re10[4], BREG:ToBREG|Re10[5], BREG:ToBREG|Re10[6], BREG:ToBREG|Re10[7],     ;
+;                                     ;                           ; BREG:ToBREG|Re10[8], BREG:ToBREG|Re10[9], BREG:ToBREG|Re10[10], BREG:ToBREG|Re10[11],   ;
+;                                     ;                           ; BREG:ToBREG|Re10[12], BREG:ToBREG|Re10[13], BREG:ToBREG|Re10[14], BREG:ToBREG|Re10[15], ;
+;                                     ;                           ; BREG:ToBREG|Re10[16], BREG:ToBREG|Re10[17], BREG:ToBREG|Re10[18], BREG:ToBREG|Re10[19], ;
+;                                     ;                           ; BREG:ToBREG|Re10[20], BREG:ToBREG|Re10[21], BREG:ToBREG|Re10[22], BREG:ToBREG|Re10[23], ;
+;                                     ;                           ; BREG:ToBREG|Re10[24], BREG:ToBREG|Re10[25], BREG:ToBREG|Re10[26], BREG:ToBREG|Re10[27], ;
+;                                     ;                           ; BREG:ToBREG|Re10[28], BREG:ToBREG|Re10[29], BREG:ToBREG|Re10[30], BREG:ToBREG|Re10[31], ;
+;                                     ;                           ; BREG:ToBREG|Re9[0], BREG:ToBREG|Re9[1], BREG:ToBREG|Re9[2], BREG:ToBREG|Re9[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re9[4], BREG:ToBREG|Re9[5], BREG:ToBREG|Re9[6], BREG:ToBREG|Re9[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re9[8], BREG:ToBREG|Re9[9], BREG:ToBREG|Re9[10], BREG:ToBREG|Re9[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re9[12], BREG:ToBREG|Re9[13], BREG:ToBREG|Re9[14], BREG:ToBREG|Re9[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re9[16], BREG:ToBREG|Re9[17], BREG:ToBREG|Re9[18], BREG:ToBREG|Re9[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re9[20], BREG:ToBREG|Re9[21], BREG:ToBREG|Re9[22], BREG:ToBREG|Re9[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re9[24], BREG:ToBREG|Re9[25], BREG:ToBREG|Re9[26], BREG:ToBREG|Re9[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re9[28], BREG:ToBREG|Re9[29], BREG:ToBREG|Re9[30], BREG:ToBREG|Re9[31],     ;
+;                                     ;                           ; BREG:ToBREG|Re6[0], BREG:ToBREG|Re6[1], BREG:ToBREG|Re6[2], BREG:ToBREG|Re6[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re6[4], BREG:ToBREG|Re6[5], BREG:ToBREG|Re6[6], BREG:ToBREG|Re6[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re6[8], BREG:ToBREG|Re6[9], BREG:ToBREG|Re6[10], BREG:ToBREG|Re6[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re6[12], BREG:ToBREG|Re6[13], BREG:ToBREG|Re6[14], BREG:ToBREG|Re6[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re6[16], BREG:ToBREG|Re6[17], BREG:ToBREG|Re6[18], BREG:ToBREG|Re6[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re6[20], BREG:ToBREG|Re6[21], BREG:ToBREG|Re6[22], BREG:ToBREG|Re6[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re6[24], BREG:ToBREG|Re6[25], BREG:ToBREG|Re6[26], BREG:ToBREG|Re6[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re6[28], BREG:ToBREG|Re6[29], BREG:ToBREG|Re6[30], BREG:ToBREG|Re6[31],     ;
+;                                     ;                           ; BREG:ToBREG|Re5[0], BREG:ToBREG|Re5[1], BREG:ToBREG|Re5[2], BREG:ToBREG|Re5[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re5[4], BREG:ToBREG|Re5[5], BREG:ToBREG|Re5[6], BREG:ToBREG|Re5[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re5[8], BREG:ToBREG|Re5[9], BREG:ToBREG|Re5[10], BREG:ToBREG|Re5[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re5[12], BREG:ToBREG|Re5[13], BREG:ToBREG|Re5[14], BREG:ToBREG|Re5[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re5[16], BREG:ToBREG|Re5[17], BREG:ToBREG|Re5[18], BREG:ToBREG|Re5[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re5[20], BREG:ToBREG|Re5[21], BREG:ToBREG|Re5[22], BREG:ToBREG|Re5[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re5[24], BREG:ToBREG|Re5[25], BREG:ToBREG|Re5[26], BREG:ToBREG|Re5[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re5[28], BREG:ToBREG|Re5[29], BREG:ToBREG|Re5[30], BREG:ToBREG|Re5[31],     ;
+;                                     ;                           ; BREG:ToBREG|Re4[0], BREG:ToBREG|Re4[1], BREG:ToBREG|Re4[2], BREG:ToBREG|Re4[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re4[4], BREG:ToBREG|Re4[5], BREG:ToBREG|Re4[6], BREG:ToBREG|Re4[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re4[8], BREG:ToBREG|Re4[9], BREG:ToBREG|Re4[10], BREG:ToBREG|Re4[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re4[12], BREG:ToBREG|Re4[13], BREG:ToBREG|Re4[14], BREG:ToBREG|Re4[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re4[16], BREG:ToBREG|Re4[17], BREG:ToBREG|Re4[18], BREG:ToBREG|Re4[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re4[20], BREG:ToBREG|Re4[21], BREG:ToBREG|Re4[22], BREG:ToBREG|Re4[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re4[24], BREG:ToBREG|Re4[25], BREG:ToBREG|Re4[26], BREG:ToBREG|Re4[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re4[28], BREG:ToBREG|Re4[29], BREG:ToBREG|Re4[30], BREG:ToBREG|Re4[31],     ;
+;                                     ;                           ; BREG:ToBREG|Re3[0], BREG:ToBREG|Re3[1], BREG:ToBREG|Re3[2], BREG:ToBREG|Re3[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re3[4], BREG:ToBREG|Re3[5], BREG:ToBREG|Re3[6], BREG:ToBREG|Re3[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re3[8], BREG:ToBREG|Re3[9], BREG:ToBREG|Re3[10], BREG:ToBREG|Re3[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re3[12], BREG:ToBREG|Re3[13], BREG:ToBREG|Re3[14], BREG:ToBREG|Re3[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re3[16], BREG:ToBREG|Re3[17], BREG:ToBREG|Re3[18], BREG:ToBREG|Re3[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re3[20], BREG:ToBREG|Re3[21], BREG:ToBREG|Re3[22], BREG:ToBREG|Re3[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re3[24], BREG:ToBREG|Re3[25], BREG:ToBREG|Re3[26], BREG:ToBREG|Re3[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re3[28], BREG:ToBREG|Re3[29], BREG:ToBREG|Re3[30], BREG:ToBREG|Re3[31],     ;
+;                                     ;                           ; BREG:ToBREG|Re2[0], BREG:ToBREG|Re2[1], BREG:ToBREG|Re2[2], BREG:ToBREG|Re2[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re2[4], BREG:ToBREG|Re2[5], BREG:ToBREG|Re2[6], BREG:ToBREG|Re2[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re2[8], BREG:ToBREG|Re2[9], BREG:ToBREG|Re2[10], BREG:ToBREG|Re2[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re2[12], BREG:ToBREG|Re2[13], BREG:ToBREG|Re2[14], BREG:ToBREG|Re2[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re2[16], BREG:ToBREG|Re2[17], BREG:ToBREG|Re2[18], BREG:ToBREG|Re2[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re2[20], BREG:ToBREG|Re2[21], BREG:ToBREG|Re2[22], BREG:ToBREG|Re2[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re2[24], BREG:ToBREG|Re2[25], BREG:ToBREG|Re2[26], BREG:ToBREG|Re2[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re2[28], BREG:ToBREG|Re2[29], BREG:ToBREG|Re2[30], BREG:ToBREG|Re2[31],     ;
+;                                     ;                           ; BREG:ToBREG|Re1[0], BREG:ToBREG|Re1[1], BREG:ToBREG|Re1[2], BREG:ToBREG|Re1[3],         ;
+;                                     ;                           ; BREG:ToBREG|Re1[4], BREG:ToBREG|Re1[5], BREG:ToBREG|Re1[6], BREG:ToBREG|Re1[7],         ;
+;                                     ;                           ; BREG:ToBREG|Re1[8], BREG:ToBREG|Re1[9], BREG:ToBREG|Re1[10], BREG:ToBREG|Re1[11],       ;
+;                                     ;                           ; BREG:ToBREG|Re1[12], BREG:ToBREG|Re1[13], BREG:ToBREG|Re1[14], BREG:ToBREG|Re1[15],     ;
+;                                     ;                           ; BREG:ToBREG|Re1[16], BREG:ToBREG|Re1[17], BREG:ToBREG|Re1[18], BREG:ToBREG|Re1[19],     ;
+;                                     ;                           ; BREG:ToBREG|Re1[20], BREG:ToBREG|Re1[21], BREG:ToBREG|Re1[22], BREG:ToBREG|Re1[23],     ;
+;                                     ;                           ; BREG:ToBREG|Re1[24], BREG:ToBREG|Re1[25], BREG:ToBREG|Re1[26], BREG:ToBREG|Re1[27],     ;
+;                                     ;                           ; BREG:ToBREG|Re1[28], BREG:ToBREG|Re1[29], BREG:ToBREG|Re1[30], BREG:ToBREG|Re1[31]      ;
+; fetch_reg:IF2ID|instruction_out[26] ; Stuck at GND              ; decode_exec_reg:ID2EX|MemtoReg_out, decode_exec_reg:ID2EX|RegWrite_out,                 ;
+;                                     ; due to stuck port data_in ; decode_exec_reg:ID2EX|ALUop_out[1], exec_mem_reg:EX2MEM|MemtoReg_out,                   ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|RegWrite_out, decode_exec_reg:ID2EX|ALUSrc_out,                     ;
+;                                     ;                           ; decode_exec_reg:ID2EX|ALUop_out[0], mem_wb_reg:MEM2WB|MemtoReg_out,                     ;
+;                                     ;                           ; mem_wb_reg:MEM2WB|RegWrite_out, mem_wb_reg:MEM2WB|alu_result_out[31],                   ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[31], mem_wb_reg:MEM2WB|alu_result_out[30],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[30], mem_wb_reg:MEM2WB|alu_result_out[29],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[29], mem_wb_reg:MEM2WB|alu_result_out[28],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[28], mem_wb_reg:MEM2WB|alu_result_out[27],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[27], mem_wb_reg:MEM2WB|alu_result_out[26],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[26], mem_wb_reg:MEM2WB|alu_result_out[25],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[25], mem_wb_reg:MEM2WB|alu_result_out[24],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[24], mem_wb_reg:MEM2WB|alu_result_out[23],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[23], mem_wb_reg:MEM2WB|alu_result_out[22],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[22], mem_wb_reg:MEM2WB|alu_result_out[21],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[21], mem_wb_reg:MEM2WB|alu_result_out[20],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[20], mem_wb_reg:MEM2WB|alu_result_out[19],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[19], mem_wb_reg:MEM2WB|alu_result_out[18],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[18], mem_wb_reg:MEM2WB|alu_result_out[17],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[17], mem_wb_reg:MEM2WB|alu_result_out[16],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[16], mem_wb_reg:MEM2WB|alu_result_out[15],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[15], mem_wb_reg:MEM2WB|alu_result_out[14],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[14], mem_wb_reg:MEM2WB|alu_result_out[13],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[13], mem_wb_reg:MEM2WB|alu_result_out[12],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[12], mem_wb_reg:MEM2WB|alu_result_out[11],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[11], mem_wb_reg:MEM2WB|alu_result_out[10],           ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[10], mem_wb_reg:MEM2WB|alu_result_out[9],            ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[9], mem_wb_reg:MEM2WB|alu_result_out[8],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[8], mem_wb_reg:MEM2WB|alu_result_out[7],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[7], mem_wb_reg:MEM2WB|alu_result_out[6],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[6], mem_wb_reg:MEM2WB|alu_result_out[5],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[5], mem_wb_reg:MEM2WB|alu_result_out[4],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[4], mem_wb_reg:MEM2WB|alu_result_out[3],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[3], mem_wb_reg:MEM2WB|alu_result_out[2],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[2], mem_wb_reg:MEM2WB|alu_result_out[1],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[1], mem_wb_reg:MEM2WB|alu_result_out[0],             ;
+;                                     ;                           ; exec_mem_reg:EX2MEM|alu_result_out[0], BREG:ToBREG|Re26[0], BREG:ToBREG|Re26[1],        ;
+;                                     ;                           ; BREG:ToBREG|Re26[2], BREG:ToBREG|Re26[3], BREG:ToBREG|Re26[4], BREG:ToBREG|Re26[5],     ;
+;                                     ;                           ; BREG:ToBREG|Re26[6], BREG:ToBREG|Re26[7], BREG:ToBREG|Re26[8], BREG:ToBREG|Re26[9],     ;
+;                                     ;                           ; BREG:ToBREG|Re26[10], BREG:ToBREG|Re26[11], BREG:ToBREG|Re26[12], BREG:ToBREG|Re26[13], ;
+;                                     ;                           ; BREG:ToBREG|Re26[14], BREG:ToBREG|Re26[15], BREG:ToBREG|Re26[16], BREG:ToBREG|Re26[17], ;
+;                                     ;                           ; BREG:ToBREG|Re26[18], BREG:ToBREG|Re26[19], BREG:ToBREG|Re26[20], BREG:ToBREG|Re26[21], ;
+;                                     ;                           ; BREG:ToBREG|Re26[22], BREG:ToBREG|Re26[23], BREG:ToBREG|Re26[24], BREG:ToBREG|Re26[25], ;
+;                                     ;                           ; BREG:ToBREG|Re26[26], BREG:ToBREG|Re26[27], BREG:ToBREG|Re26[28], BREG:ToBREG|Re26[29], ;
+;                                     ;                           ; BREG:ToBREG|Re26[30], BREG:ToBREG|Re26[31], BREG:ToBREG|Re25[0], BREG:ToBREG|Re25[1],   ;
+;                                     ;                           ; BREG:ToBREG|Re25[2], BREG:ToBREG|Re25[3], BREG:ToBREG|Re25[4], BREG:ToBREG|Re25[5],     ;
+;                                     ;                           ; BREG:ToBREG|Re25[6], BREG:ToBREG|Re25[7], BREG:ToBREG|Re25[8], BREG:ToBREG|Re25[9],     ;
+;                                     ;                           ; BREG:ToBREG|Re25[10], BREG:ToBREG|Re25[11], BREG:ToBREG|Re25[12], BREG:ToBREG|Re25[13], ;
+;                                     ;                           ; BREG:ToBREG|Re25[14], BREG:ToBREG|Re25[15], BREG:ToBREG|Re25[16], BREG:ToBREG|Re25[17], ;
+;                                     ;                           ; BREG:ToBREG|Re25[18], BREG:ToBREG|Re25[19], BREG:ToBREG|Re25[20], BREG:ToBREG|Re25[21], ;
+;                                     ;                           ; BREG:ToBREG|Re25[22], BREG:ToBREG|Re25[23], BREG:ToBREG|Re25[24], BREG:ToBREG|Re25[25], ;
+;                                     ;                           ; BREG:ToBREG|Re25[26], BREG:ToBREG|Re25[27], BREG:ToBREG|Re25[28], BREG:ToBREG|Re25[29], ;
+;                                     ;                           ; BREG:ToBREG|Re25[30], BREG:ToBREG|Re25[31], BREG:ToBREG|Re17[0], BREG:ToBREG|Re17[1],   ;
+;                                     ;                           ; BREG:ToBREG|Re17[2], BREG:ToBREG|Re17[3], BREG:ToBREG|Re17[4], BREG:ToBREG|Re17[5],     ;
+;                                     ;                           ; BREG:ToBREG|Re17[6], BREG:ToBREG|Re17[7], BREG:ToBREG|Re17[8], BREG:ToBREG|Re17[9],     ;
+;                                     ;                           ; BREG:ToBREG|Re17[10], BREG:ToBREG|Re17[11], BREG:ToBREG|Re17[12], BREG:ToBREG|Re17[13], ;
+;                                     ;                           ; BREG:ToBREG|Re17[14], BREG:ToBREG|Re17[15], BREG:ToBREG|Re17[16], BREG:ToBREG|Re17[17], ;
+;                                     ;                           ; BREG:ToBREG|Re17[18], BREG:ToBREG|Re17[19], BREG:ToBREG|Re17[20], BREG:ToBREG|Re17[21], ;
+;                                     ;                           ; BREG:ToBREG|Re17[22], BREG:ToBREG|Re17[23], BREG:ToBREG|Re17[24], BREG:ToBREG|Re17[25], ;
+;                                     ;                           ; BREG:ToBREG|Re17[26], BREG:ToBREG|Re17[27], BREG:ToBREG|Re17[28], BREG:ToBREG|Re17[29], ;
+;                                     ;                           ; BREG:ToBREG|Re17[30], BREG:ToBREG|Re17[31], BREG:ToBREG|Re16[0], BREG:ToBREG|Re16[1],   ;
+;                                     ;                           ; BREG:ToBREG|Re16[2], BREG:ToBREG|Re16[3], BREG:ToBREG|Re16[4], BREG:ToBREG|Re16[5],     ;
+;                                     ;                           ; BREG:ToBREG|Re16[6], BREG:ToBREG|Re16[7], BREG:ToBREG|Re16[8], BREG:ToBREG|Re16[9],     ;
+;                                     ;                           ; BREG:ToBREG|Re16[10], BREG:ToBREG|Re16[11], BREG:ToBREG|Re16[12], BREG:ToBREG|Re16[13], ;
+;                                     ;                           ; BREG:ToBREG|Re16[14], BREG:ToBREG|Re16[15], BREG:ToBREG|Re16[16], BREG:ToBREG|Re16[17], ;
+;                                     ;                           ; BREG:ToBREG|Re16[18], BREG:ToBREG|Re16[19], BREG:ToBREG|Re16[20], BREG:ToBREG|Re16[21], ;
+;                                     ;                           ; BREG:ToBREG|Re16[22], BREG:ToBREG|Re16[23], BREG:ToBREG|Re16[24], BREG:ToBREG|Re16[25], ;
+;                                     ;                           ; BREG:ToBREG|Re16[26], BREG:ToBREG|Re16[27], BREG:ToBREG|Re16[28], BREG:ToBREG|Re16[29], ;
+;                                     ;                           ; BREG:ToBREG|Re16[30], BREG:ToBREG|Re16[31], BREG:ToBREG|Re8[0], BREG:ToBREG|Re8[1],     ;
+;                                     ;                           ; BREG:ToBREG|Re8[2], BREG:ToBREG|Re8[3], BREG:ToBREG|Re8[4], BREG:ToBREG|Re8[5],         ;
+;                                     ;                           ; BREG:ToBREG|Re8[6], BREG:ToBREG|Re8[7], BREG:ToBREG|Re8[8], BREG:ToBREG|Re8[9],         ;
+;                                     ;                           ; BREG:ToBREG|Re8[10], BREG:ToBREG|Re8[11], BREG:ToBREG|Re8[12], BREG:ToBREG|Re8[13],     ;
+;                                     ;                           ; BREG:ToBREG|Re8[14], BREG:ToBREG|Re8[15], BREG:ToBREG|Re8[16], BREG:ToBREG|Re8[17],     ;
+;                                     ;                           ; BREG:ToBREG|Re8[18], BREG:ToBREG|Re8[19], BREG:ToBREG|Re8[20], BREG:ToBREG|Re8[21],     ;
+;                                     ;                           ; BREG:ToBREG|Re8[22], BREG:ToBREG|Re8[23], BREG:ToBREG|Re8[24], BREG:ToBREG|Re8[25],     ;
+;                                     ;                           ; BREG:ToBREG|Re8[26], BREG:ToBREG|Re8[27], BREG:ToBREG|Re8[28], BREG:ToBREG|Re8[29],     ;
+;                                     ;                           ; BREG:ToBREG|Re8[30], BREG:ToBREG|Re8[31], BREG:ToBREG|r2[0], BREG:ToBREG|r2[1],         ;
+;                                     ;                           ; BREG:ToBREG|r2[2], BREG:ToBREG|r2[3], BREG:ToBREG|r2[4], BREG:ToBREG|r2[5],             ;
+;                                     ;                           ; BREG:ToBREG|r2[6], BREG:ToBREG|r2[7], BREG:ToBREG|r2[8], BREG:ToBREG|r2[9],             ;
+;                                     ;                           ; BREG:ToBREG|r2[10], BREG:ToBREG|r2[11], BREG:ToBREG|r2[12], BREG:ToBREG|r2[13],         ;
+;                                     ;                           ; BREG:ToBREG|r2[14], BREG:ToBREG|r2[15], BREG:ToBREG|r2[16], BREG:ToBREG|r2[17],         ;
+;                                     ;                           ; BREG:ToBREG|r2[18], BREG:ToBREG|r2[19], BREG:ToBREG|r2[20], BREG:ToBREG|r2[21],         ;
+;                                     ;                           ; BREG:ToBREG|r2[22], BREG:ToBREG|r2[23], BREG:ToBREG|r2[24], BREG:ToBREG|r2[25],         ;
+;                                     ;                           ; BREG:ToBREG|r2[26], BREG:ToBREG|r2[27], BREG:ToBREG|r2[28], BREG:ToBREG|r2[29],         ;
+;                                     ;                           ; BREG:ToBREG|r2[30], BREG:ToBREG|r2[31], BREG:ToBREG|r1[0], BREG:ToBREG|r1[1],           ;
+;                                     ;                           ; BREG:ToBREG|r1[2], BREG:ToBREG|r1[3], BREG:ToBREG|r1[4], BREG:ToBREG|r1[5],             ;
+;                                     ;                           ; BREG:ToBREG|r1[6], BREG:ToBREG|r1[7], BREG:ToBREG|r1[8], BREG:ToBREG|r1[9],             ;
+;                                     ;                           ; BREG:ToBREG|r1[10], BREG:ToBREG|r1[11], BREG:ToBREG|r1[12], BREG:ToBREG|r1[13],         ;
+;                                     ;                           ; BREG:ToBREG|r1[14], BREG:ToBREG|r1[15], BREG:ToBREG|r1[16], BREG:ToBREG|r1[17],         ;
+;                                     ;                           ; BREG:ToBREG|r1[18], BREG:ToBREG|r1[19], BREG:ToBREG|r1[20], BREG:ToBREG|r1[21],         ;
+;                                     ;                           ; BREG:ToBREG|r1[22], BREG:ToBREG|r1[23], BREG:ToBREG|r1[24], BREG:ToBREG|r1[25],         ;
+;                                     ;                           ; BREG:ToBREG|r1[26], BREG:ToBREG|r1[27], BREG:ToBREG|r1[28], BREG:ToBREG|r1[29],         ;
+;                                     ;                           ; BREG:ToBREG|r1[30], BREG:ToBREG|r1[31]                                                  ;
+; fetch_reg:IF2ID|instruction_out[0]  ; Stuck at GND              ; decode_exec_reg:ID2EX|func_out[0], decode_exec_reg:ID2EX|address32_out[0],              ;
+;                                     ; due to stuck port data_in ; decode_exec_reg:ID2EX|data1_out[0], decode_exec_reg:ID2EX|data1_out[1],                 ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[2], decode_exec_reg:ID2EX|data1_out[3],                 ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[4], decode_exec_reg:ID2EX|data1_out[5],                 ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[6], decode_exec_reg:ID2EX|data1_out[7],                 ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[8], decode_exec_reg:ID2EX|data1_out[9],                 ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[10], decode_exec_reg:ID2EX|data1_out[11],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[12], decode_exec_reg:ID2EX|data1_out[13],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[14], decode_exec_reg:ID2EX|data1_out[15],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[16], decode_exec_reg:ID2EX|data1_out[17],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[18], decode_exec_reg:ID2EX|data1_out[19],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[20], decode_exec_reg:ID2EX|data1_out[21],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[22], decode_exec_reg:ID2EX|data1_out[23],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[24], decode_exec_reg:ID2EX|data1_out[25],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[26], decode_exec_reg:ID2EX|data1_out[27],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[28], decode_exec_reg:ID2EX|data1_out[29],               ;
+;                                     ;                           ; decode_exec_reg:ID2EX|data1_out[30], decode_exec_reg:ID2EX|data1_out[31]                ;
+; fetch_reg:IF2ID|instruction_out[15] ; Stuck at GND              ; decode_exec_reg:ID2EX|rs_out[4], decode_exec_reg:ID2EX|address32_out[15],               ;
+;                                     ; due to stuck port data_in ; decode_exec_reg:ID2EX|address32_out[16], decode_exec_reg:ID2EX|address32_out[17],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[18], decode_exec_reg:ID2EX|address32_out[19],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[20], decode_exec_reg:ID2EX|address32_out[21],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[22], decode_exec_reg:ID2EX|address32_out[23],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[24], decode_exec_reg:ID2EX|address32_out[25],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[26], decode_exec_reg:ID2EX|address32_out[27],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[28], decode_exec_reg:ID2EX|address32_out[29],       ;
+;                                     ;                           ; decode_exec_reg:ID2EX|address32_out[30], decode_exec_reg:ID2EX|address32_out[31]        ;
+; fetch_reg:IF2ID|instruction_out[17] ; Stuck at GND              ; decode_exec_reg:ID2EX|rt_out[1], exec_mem_reg:EX2MEM|wr_reg_out[1],                     ;
+;                                     ; due to stuck port data_in ; mem_wb_reg:MEM2WB|wr_reg_out[1]                                                         ;
+; fetch_reg:IF2ID|instruction_out[18] ; Stuck at GND              ; decode_exec_reg:ID2EX|rt_out[2], exec_mem_reg:EX2MEM|wr_reg_out[2],                     ;
+;                                     ; due to stuck port data_in ; mem_wb_reg:MEM2WB|wr_reg_out[2]                                                         ;
+; fetch_reg:IF2ID|instruction_out[19] ; Stuck at GND              ; decode_exec_reg:ID2EX|rt_out[3], exec_mem_reg:EX2MEM|wr_reg_out[3],                     ;
+;                                     ; due to stuck port data_in ; mem_wb_reg:MEM2WB|wr_reg_out[3]                                                         ;
+; fetch_reg:IF2ID|instruction_out[20] ; Stuck at GND              ; decode_exec_reg:ID2EX|rt_out[4], exec_mem_reg:EX2MEM|wr_reg_out[4],                     ;
+;                                     ; due to stuck port data_in ; mem_wb_reg:MEM2WB|wr_reg_out[4]                                                         ;
+; fetch_reg:IF2ID|instruction_out[1]  ; Stuck at GND              ; decode_exec_reg:ID2EX|func_out[1], decode_exec_reg:ID2EX|address32_out[1]               ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[2]  ; Stuck at GND              ; decode_exec_reg:ID2EX|func_out[2], decode_exec_reg:ID2EX|address32_out[2]               ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[3]  ; Stuck at GND              ; decode_exec_reg:ID2EX|func_out[3], decode_exec_reg:ID2EX|address32_out[3]               ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[4]  ; Stuck at GND              ; decode_exec_reg:ID2EX|func_out[4], decode_exec_reg:ID2EX|address32_out[4]               ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[5]  ; Stuck at GND              ; decode_exec_reg:ID2EX|func_out[5], decode_exec_reg:ID2EX|address32_out[5]               ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[11] ; Stuck at GND              ; decode_exec_reg:ID2EX|rs_out[0], decode_exec_reg:ID2EX|address32_out[11]                ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[12] ; Stuck at GND              ; decode_exec_reg:ID2EX|rs_out[1], decode_exec_reg:ID2EX|address32_out[12]                ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[13] ; Stuck at GND              ; decode_exec_reg:ID2EX|rs_out[2], decode_exec_reg:ID2EX|address32_out[13]                ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[14] ; Stuck at GND              ; decode_exec_reg:ID2EX|rs_out[3], decode_exec_reg:ID2EX|address32_out[14]                ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; exec_mem_reg:EX2MEM|data2_out[16]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[16]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[17]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[17]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[18]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[18]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[19]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[19]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[20]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[20]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[22]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[22]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[23]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[23]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[24]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[24]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[25]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[25]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[26]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[26]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[6]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[6]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[28]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[28]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[29]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[29]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[30]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[30]                                                     ;
+; exec_mem_reg:EX2MEM|MemWrite_out    ; Lost Fanouts              ; decode_exec_reg:ID2EX|MemWrite_out                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[31]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[31]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[27]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[27]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[0]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[0]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[1]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[1]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[2]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[2]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[3]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[3]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[4]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[4]                                                      ;
+; fetch_reg:IF2ID|instruction_out[6]  ; Stuck at GND              ; decode_exec_reg:ID2EX|address32_out[6]                                                  ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[7]  ; Stuck at GND              ; decode_exec_reg:ID2EX|address32_out[7]                                                  ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; fetch_reg:IF2ID|instruction_out[8]  ; Stuck at GND              ; decode_exec_reg:ID2EX|address32_out[8]                                                  ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; exec_mem_reg:EX2MEM|data2_out[5]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[5]                                                      ;
+; fetch_reg:IF2ID|instruction_out[10] ; Stuck at GND              ; decode_exec_reg:ID2EX|address32_out[10]                                                 ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
+; exec_mem_reg:EX2MEM|data2_out[7]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[7]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[8]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[8]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[9]    ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[9]                                                      ;
+; exec_mem_reg:EX2MEM|data2_out[10]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[10]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[21]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[21]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[11]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[11]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[12]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[12]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[13]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[13]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[14]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[14]                                                     ;
+; exec_mem_reg:EX2MEM|data2_out[15]   ; Lost Fanouts              ; decode_exec_reg:ID2EX|data2_out[15]                                                     ;
+; fetch_reg:IF2ID|instruction_out[9]  ; Stuck at GND              ; decode_exec_reg:ID2EX|address32_out[9]                                                  ;
+;                                     ; due to stuck port data_in ;                                                                                         ;
++-------------------------------------+---------------------------+-----------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Source assignments for memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------+
+; Assignment                      ; Value              ; From ; To                                    ;
++---------------------------------+--------------------+------+---------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                     ;
++---------------------------------+--------------------+------+---------------------------------------+
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: BREG:ToBREG ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; wsize          ; 32    ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memMIPS:DTMEM|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+--------------------------------+
+; Parameter Name                     ; Value                ; Type                           ;
++------------------------------------+----------------------+--------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                 ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                        ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                        ;
+; WIDTH_A                            ; 32                   ; Signed Integer                 ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer                 ;
+; NUMWORDS_A                         ; 256                  ; Signed Integer                 ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                        ;
+; WIDTH_B                            ; 1                    ; Untyped                        ;
+; WIDTHAD_B                          ; 1                    ; Untyped                        ;
+; NUMWORDS_B                         ; 1                    ; Untyped                        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                        ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                 ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                        ;
+; BYTE_SIZE                          ; 8                    ; Untyped                        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                        ;
+; INIT_FILE                          ; ../Mif1.mif          ; Untyped                        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                        ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                        ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                        ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                        ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                        ;
+; CBXI_PARAMETER                     ; altsyncram_u3c1      ; Untyped                        ;
++------------------------------------+----------------------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                          ;
++-------------------------------------------+-----------------------------------------------+
+; Name                                      ; Value                                         ;
++-------------------------------------------+-----------------------------------------------+
+; Number of entity instances                ; 1                                             ;
+; Entity Instance                           ; memMIPS:DTMEM|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                   ;
+;     -- WIDTH_A                            ; 32                                            ;
+;     -- NUMWORDS_A                         ; 256                                           ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                        ;
+;     -- WIDTH_B                            ; 1                                             ;
+;     -- NUMWORDS_B                         ; 1                                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                        ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                  ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                          ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                     ;
++-------------------------------------------+-----------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mem_wb_reg:MEM2WB"                                                                     ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; ram_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "exec_mem_reg:EX2MEM"                                                                       ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; memread_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ULA:ALU"                                                                            ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; ovfl ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decode_exec_reg:ID2EX"                                                                ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "Universal_adder:PCNext" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; b[31..3] ; Input ; Info     ; Stuck at GND         ;
+; b[1..0]  ; Input ; Info     ; Stuck at GND         ;
+; b[2]     ; Input ; Info     ; Stuck at VCC         ;
++----------+-------+----------+----------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Mon Dec 11 17:18:40 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off mips_pipeline -c mips_pipeline
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file mux_5.vhd
+    Info (12022): Found design unit 1: mux_5-behave
+    Info (12023): Found entity 1: mux_5
+Info (12021): Found 2 design units, including 1 entities, in source file universal_adder.vhd
+    Info (12022): Found design unit 1: Universal_adder-behave
+    Info (12023): Found entity 1: Universal_adder
+Info (12021): Found 2 design units, including 1 entities, in source file mips_pipeline.vhd
+    Info (12022): Found design unit 1: mips_pipeline-Behovioral
+    Info (12023): Found entity 1: mips_pipeline
+Info (12021): Found 2 design units, including 1 entities, in source file signed_extent.vhd
+    Info (12022): Found design unit 1: Signed_extent-behave
+    Info (12023): Found entity 1: Signed_extent
+Warning (12090): Entity "mux" obtained from "mux.vhd" instead of from Quartus II megafunction library
+Info (12021): Found 2 design units, including 1 entities, in source file mux.vhd
+    Info (12022): Found design unit 1: mux-behave
+    Info (12023): Found entity 1: mux
+Info (12021): Found 2 design units, including 1 entities, in source file ula.vhd
+    Info (12022): Found design unit 1: ULA-Behovioral
+    Info (12023): Found entity 1: ULA
+Info (12021): Found 2 design units, including 1 entities, in source file breg.vhd
+    Info (12022): Found design unit 1: BREG-Behovioral
+    Info (12023): Found entity 1: BREG
+Info (12021): Found 2 design units, including 1 entities, in source file controle_ula.vhd
+    Info (12022): Found design unit 1: Controle_ULA-behovioral
+    Info (12023): Found entity 1: Controle_ULA
+Info (12021): Found 2 design units, including 1 entities, in source file unidade_de_controle.vhd
+    Info (12022): Found design unit 1: Unidade_de_Controle-Behovioral
+    Info (12023): Found entity 1: Unidade_de_Controle
+Info (12021): Found 2 design units, including 1 entities, in source file memmips.vhd
+    Info (12022): Found design unit 1: memmips-SYN
+    Info (12023): Found entity 1: memMIPS
+Info (12021): Found 2 design units, including 1 entities, in source file instruction_mem.vhd
+    Info (12022): Found design unit 1: instruction_mem-Behovioral
+    Info (12023): Found entity 1: instruction_mem
+Info (12021): Found 2 design units, including 1 entities, in source file contador_de_programa.vhd
+    Info (12022): Found design unit 1: Contador_de_programa-Behovioral
+    Info (12023): Found entity 1: Contador_de_programa
+Info (12021): Found 2 design units, including 1 entities, in source file fetch_reg.vhd
+    Info (12022): Found design unit 1: fetch_reg-Behovioral
+    Info (12023): Found entity 1: fetch_reg
+Info (12021): Found 2 design units, including 1 entities, in source file decode_exec_reg.vhd
+    Info (12022): Found design unit 1: decode_exec_reg-Behovioral
+    Info (12023): Found entity 1: decode_exec_reg
+Info (12021): Found 2 design units, including 1 entities, in source file exec_mem_reg.vhd
+    Info (12022): Found design unit 1: exec_mem_reg-Behovioral
+    Info (12023): Found entity 1: exec_mem_reg
+Info (12021): Found 2 design units, including 1 entities, in source file mux_4.vhd
+    Info (12022): Found design unit 1: mux4-behovioral
+    Info (12023): Found entity 1: mux4
+Info (12021): Found 2 design units, including 1 entities, in source file mem_wb_reg.vhd
+    Info (12022): Found design unit 1: mem_wb_reg-Behovioral
+    Info (12023): Found entity 1: mem_wb_reg
+Info (12021): Found 2 design units, including 1 entities, in source file shift_left_2.vhd
+    Info (12022): Found design unit 1: shift_left_2-Behovioral
+    Info (12023): Found entity 1: shift_left_2
+Info (12127): Elaborating entity "mips_pipeline" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at mips_pipeline.vhd(192): object "EX_Inst_25_21" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at mips_pipeline.vhd(196): object "EX_OVFL" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at mips_pipeline.vhd(202): object "WB_WD1" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at mips_pipeline.vhd(202): used implicit default value for signal "WB_DR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at mips_pipeline.vhd(209): object "CTL3_MemRead" assigned a value but never read
+Info (12128): Elaborating entity "mux" for hierarchy "mux:PCSel"
+Info (12128): Elaborating entity "Contador_de_programa" for hierarchy "Contador_de_programa:PCSet"
+Info (12128): Elaborating entity "Universal_adder" for hierarchy "Universal_adder:PCNext"
+Info (12128): Elaborating entity "instruction_mem" for hierarchy "instruction_mem:Fetch"
+Info (12128): Elaborating entity "fetch_reg" for hierarchy "fetch_reg:IF2ID"
+Info (12128): Elaborating entity "Unidade_de_Controle" for hierarchy "Unidade_de_Controle:CTL"
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "RegDst", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "ALUSrc", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "MemtoReg", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "RegWrite", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "MemRead", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "MemWrite", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "Branch", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at Unidade_de_Controle.vhd(20): inferring latch(es) for signal or variable "ALUop", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "ALUop[0]" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "ALUop[1]" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "Branch" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "MemWrite" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "MemRead" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "RegWrite" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "MemtoReg" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "ALUSrc" at Unidade_de_Controle.vhd(20)
+Info (10041): Inferred latch for "RegDst" at Unidade_de_Controle.vhd(20)
+Info (12128): Elaborating entity "BREG" for hierarchy "BREG:ToBREG"
+Info (12128): Elaborating entity "Signed_extent" for hierarchy "Signed_extent:SgnExt"
+Info (12128): Elaborating entity "decode_exec_reg" for hierarchy "decode_exec_reg:ID2EX"
+Info (12128): Elaborating entity "shift_left_2" for hierarchy "shift_left_2:SL2"
+Info (12128): Elaborating entity "Controle_ULA" for hierarchy "Controle_ULA:ALUCTL"
+Info (12128): Elaborating entity "mux_5" for hierarchy "mux_5:WrReg"
+Info (12128): Elaborating entity "ULA" for hierarchy "ULA:ALU"
+Warning (10492): VHDL Process Statement warning at ULA.vhd(70): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ULA.vhd(71): signal "a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ULA.vhd(71): signal "b" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ULA.vhd(72): signal "a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ULA.vhd(72): signal "b" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "exec_mem_reg" for hierarchy "exec_mem_reg:EX2MEM"
+Info (12128): Elaborating entity "memMIPS" for hierarchy "memMIPS:DTMEM"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memMIPS:DTMEM|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "memMIPS:DTMEM|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "memMIPS:DTMEM|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "../Mif1.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "256"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "8"
+    Info (12134): Parameter "width_a" = "32"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_u3c1.tdf
+    Info (12023): Found entity 1: altsyncram_u3c1
+Info (12128): Elaborating entity "altsyncram_u3c1" for hierarchy "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated"
+Info (12128): Elaborating entity "mem_wb_reg" for hierarchy "mem_wb_reg:MEM2WB"
+Warning (14025): LATCH primitive "Unidade_de_Controle:CTL|RegDst" is permanently disabled
+Warning (14025): LATCH primitive "Unidade_de_Controle:CTL|ALUop[1]" is permanently disabled
+Warning (14025): LATCH primitive "Unidade_de_Controle:CTL|RegWrite" is permanently disabled
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[0]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[1]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[2]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[3]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[4]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[5]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[6]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[7]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[8]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[9]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[10]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[11]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[12]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[13]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[14]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[15]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[16]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[17]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[18]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[19]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[20]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[21]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[22]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[23]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[24]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[25]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[26]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[27]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[28]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[29]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[30]"
+        Warning (14320): Synthesized away node "memMIPS:DTMEM|altsyncram:altsyncram_component|altsyncram_u3c1:auto_generated|q_a[31]"
+Info (17049): 1219 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clock"
+Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 0 output pins
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 59 warnings
+    Info: Peak virtual memory: 524 megabytes
+    Info: Processing ended: Mon Dec 11 17:18:47 2017
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
+
+
